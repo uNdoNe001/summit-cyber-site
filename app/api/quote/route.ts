@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const nodemailer = require("nodemailer");
 
 export async function POST(req: Request) {
   const { name, email, message } = await req.json();
@@ -29,6 +30,9 @@ Message: ${message}
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("SMTP error:", err);
-    return NextResponse.json({ success: false, error: "Email failed" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Email failed" },
+      { status: 500 }
+    );
   }
 }
