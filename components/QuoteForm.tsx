@@ -3,9 +3,13 @@
 
 import { useState, FormEvent } from "react";
 
+type Status = { ok: boolean; msg: string } | null;
+const getErrorMessage = (err: unknown) =>
+  err instanceof Error ? err.message : typeof err === "string" ? err : "Something went wrong.";
+
 export default function QuoteForm() {
   const [submitting, setSubmitting] = useState(false);
-  const [status, setStatus] = useState<null | { ok: boolean; msg: string }>(null);
+  const [status, setStatus] = useState<Status>(null);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -18,7 +22,6 @@ export default function QuoteForm() {
     const message = (form.elements.namedItem("message") as HTMLTextAreaElement)?.value.trim();
     const company = (form.elements.namedItem("company") as HTMLInputElement)?.value.trim(); // honeypot
 
-    // Honeypot: if filled, drop silently
     if (company) {
       setSubmitting(false);
       setStatus({ ok: true, msg: "Thanks! We’ll be in touch." });
@@ -32,16 +35,18 @@ export default function QuoteForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
       });
-
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data?.error || "Email failed");
+        let apiMsg = "Email failed";
+        try {
+          const data = (await res.json()) as { error?: string };
+          if (data?.error) apiMsg = data.error;
+        } catch {}
+        throw new Error(apiMsg);
       }
-
       setStatus({ ok: true, msg: "Got it — we’ll reach out shortly." });
       form.reset();
-    } catch (err: any) {
-      setStatus({ ok: false, msg: err?.message || "Something went wrong." });
+    } catch (err: unknown) {
+      setStatus({ ok: false, msg: getErrorMessage(err) });
     } finally {
       setSubmitting(false);
     }
@@ -55,7 +60,7 @@ export default function QuoteForm() {
       <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900">Request a Quote</h2>
       <p className="mt-2 text-slate-600 text-sm">Quick details → focused proposal. No spam.</p>
 
-      {/* Honeypot (hidden from users) */}
+      {/* Honeypot (hidden) */}
       <input
         type="text"
         name="company"
@@ -66,45 +71,13 @@ export default function QuoteForm() {
       />
 
       <div className="mt-6 grid gap-4">
-        <input
-          name="name"
-          type="text"
-          placeholder="Name"
-          className="w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500"
-          required
-        />
-        <input
-          name="email"
-          type="email"
-          placeholder="Work Email"
-          className="w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500"
-          required
-        />
-        <textarea
-          name="message"
-          placeholder="What do you want to secure?"
-          rows={4}
-          className="w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500"
-          required
-        />
-
-        <button
-          type="submit"
-          disabled={submitting}
-          className="rounded-2xl bg-sky-600 px-6 py-3 font-semibold text-white hover:bg-sky-700 disabled:opacity-60"
-        >
+        <input name="name" type="text" placeholder="Name" className="w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500" required />
+        <input name="email" type="email" placeholder="Work Email" className="w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500" required />
+        <textarea name="message" placeholder="What do you want to secure?" rows={4} className="w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500" required />
+        <button type="submit" disabled={submitting} className="rounded-2xl bg-sky-600 px-6 py-3 font-semibold text-white hover:bg-sky-700 disabled:opacity-60">
           {submitting ? "Sending..." : "Request a Quote"}
         </button>
-
-        {status && (
-          <p
-            className={`text-sm ${
-              status.ok ? "text-emerald-700" : "text-rose-700"
-            }`}
-          >
-            {status.msg}
-          </p>
-        )}
+        {status && <p className={`text-sm ${status.ok ? "text-emerald-700" : "text-rose-700"}`}>{status.msg}</p>}
       </div>
     </form>
   );

@@ -26,7 +26,7 @@ export default function Page() {
           </p>
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="#quote"
+              href="#contact"
               className="rounded-md bg-sky-600 px-6 py-3 text-lg font-semibold shadow-md hover:bg-sky-700 transition"
             >
               Get a Quote
