@@ -1,11 +1,10 @@
 /* Server-only email handler */
 
-// Force Node runtime (needed for nodemailer, avoids Edge runtime)
+// Force Node runtime (needed for nodemailer)
 export const runtime = "nodejs";
 
 import { NextResponse } from "next/server";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
