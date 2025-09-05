@@ -1,9 +1,12 @@
+export const runtime = "nodejs";
+/* eslint-disable @typescript-eslint/no-require-imports */
 /* Server-only email handler */
 
-// Force Node runtime (needed for nodemailer, avoids Edge runtime)
+// Force Node runtime on Vercel (so we can use SMTP)
 export const runtime = "nodejs";
 
 import { NextResponse } from "next/server";
+// Use require for nodemailer to avoid ESM/edge issues
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const nodemailer = require("nodemailer");
 
