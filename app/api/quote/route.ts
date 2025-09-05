@@ -1,31 +1,37 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+/* Server-only email handler */
+
+// Force Node runtime on Vercel (so we can use SMTP)
 export const runtime = "nodejs";
+
 import { NextResponse } from "next/server";
+// Use require for nodemailer to avoid ESM/edge issues
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const nodemailer = require("nodemailer");
 
 export async function POST(req: Request) {
-  const { name, email, message } = await req.json();
-
   try {
+    const { name, email, message } = await req.json();
+
+    const host = process.env.SMTP_HOST || "smtp.gmail.com";
+    const port = Number(process.env.SMTP_PORT || 465);
+    const secure = String(process.env.SMTP_SECURE || "true") === "true";
+    const user = process.env.SMTP_USER!;
+    const pass = process.env.SMTP_PASS!;
+    const to = process.env.SMTP_TO || user;
+
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: process.env.SMTP_SECURE === "true",
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
+      host,
+      port,
+      secure,
+      auth: { user, pass },
     });
 
     await transporter.sendMail({
-      from: `"Summit Cyber Quote" <${process.env.SMTP_USER}>`,
-      to: process.env.SMTP_USER, // send to yourself
+      from: `"Summit Cyber Quote" <${user}>`,
+      to,
       subject: `New Quote Request from ${name}`,
-      text: `
-Name: ${name}
-Email: ${email}
-Message: ${message}
-      `,
+      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}\n`,
     });
 
     return NextResponse.json({ success: true });
