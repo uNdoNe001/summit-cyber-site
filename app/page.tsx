@@ -54,7 +54,7 @@ export default function Page() {
             />
             <ServiceCard
               title="Cyber-as-a-Service"
-              text="Phishing training, policy creation, vendor reviews, operational support."
+              text="Phishing training, policy creation, vendor reviews, dark web monitoring."
             />
             <ServiceCard
               title="vCISO"
