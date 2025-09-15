@@ -35,8 +35,8 @@ export default function SiteHeader() {
             <Image
               src="/logo-summit.png"   // <-- make sure this exists in /public
               alt="Summit Cyber Group"
-              width={80}
-              height={80}
+              width={100}
+              height={100}
               className="h-12 w-12 md:h-16 md:w-16 object-contain"
               priority
             />
