@@ -1,5 +1,7 @@
 // app/page.tsx
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import ApproachSection from "../components/ApproachSection";
 import QuoteForm from "../components/QuoteForm";
 
@@ -68,10 +70,13 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ===== APPROACH SECTION (Flow with arrows) ===== */}
+      {/* ===== CREDLY BADGE SECTION ===== */}
+      <CredlyBadge />
+
+      {/* ===== APPROACH SECTION ===== */}
       <ApproachSection />
 
-      {/* ===== QUOTE SECTION — form left, text right, mountain visible ===== */}
+      {/* ===== QUOTE SECTION ===== */}
       <section
         id="contact"
         className="scroll-mt-24 relative w-full overflow-hidden"
@@ -81,27 +86,25 @@ export default function Page() {
           backgroundPosition: "center",
         }}
       >
-        {/* subtle overlay to keep text readable but not block the view */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-slate-900/20 to-slate-900/10" />
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-16">
           <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
-            {/* FORM (left on desktop) */}
+            {/* FORM */}
             <QuoteForm />
 
-            {/* TEXT (right on desktop) */}
+            {/* TEXT */}
             <div className="order-2 text-white">
               <h2 className="text-3xl md:text-4xl font-extrabold text-center md:text-left">
                 Ready to climb?
               </h2>
               <p className="mt-3 text-slate-100/90 max-w-prose text-center md:text-left">
-                Share your scope and we’ll recommend the leanest path to stronger
-                security.
+                Share your scope and we’ll recommend the leanest path to stronger security.
               </p>
 
               <ul className="mt-6 space-y-3 text-slate-100/90">
                 <li className="flex items-start gap-3">
                   <span className="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-emerald-400" />
-                  External / Internal / Web &amp; API testing
+                  External / Internal / Web and API testing
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-sky-400" />
@@ -127,5 +130,28 @@ function ServiceCard({ title, text }: { title: string; text: string }) {
       <h3 className="text-lg font-bold text-slate-900">{title}</h3>
       <p className="mt-2 text-slate-700 text-sm">{text}</p>
     </div>
+  );
+}
+
+/* ===== Credly Badge Component ===== */
+function CredlyBadge() {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "//cdn.credly.com/assets/utilities/embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
+  return (
+    <section className="py-10 bg-white">
+      <div className="w-full flex justify-center">
+        <div
+          data-iframe-width="150"
+          data-iframe-height="270"
+          data-share-badge-id="0eb20d3f-86e3-4545-b873-1980ea7309f3"
+          data-share-badge-host="https://www.credly.com"
+        ></div>
+      </div>
+    </section>
   );
 }
