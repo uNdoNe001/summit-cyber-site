@@ -65,7 +65,6 @@ export default function Page() {
               text="ISO 27001, GDPR, SOC 2, HIPAA, HITRUST — clear findings and remediation planning."
             />
           </div>
-          <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="0eb20d3f-86e3-4545-b873-1980ea7309f3" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
         </div>
       </section>
 
