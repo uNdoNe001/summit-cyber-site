@@ -5,7 +5,7 @@ import SiteHeader from "../components/SiteHeader"; // ⬅️ relative path fix
 
 export const metadata: Metadata = {
   title: "Summit Cyber Group",
-  description: "Practical cyber protection for SMBs.",
+  description: "Practical cyber protection for Small and Medium-Sized Businesses.",
   icons: {
     icon: [
       { url: "/favicon.ico" }, // multi-size .ico
