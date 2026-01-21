@@ -21,7 +21,7 @@ export default function Page() {
         </video>
         <div className="relative z-10 max-w-3xl px-4">
           <h1 className="text-4xl md:text-6xl font-extrabold drop-shadow-lg">
-            Practical Cyber Protection for SMBs
+            Practical Cyber Protection for Small and Medium-Sized Businesses
           </h1>
           <p className="mt-4 text-lg md:text-xl">
             Penetration Testing • Cyber-as-a-Service • vCISO • ISO27001/SOC2 Gap Assessments
