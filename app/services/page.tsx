@@ -1,4 +1,4 @@
-export const metadata = { title: "Services — Arcane Cyber Security" };
+export const metadata = { title: "Services — Summit Cyber Group" };
 
 export default function Services() {
   const items = [
