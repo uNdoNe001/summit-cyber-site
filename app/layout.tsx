@@ -2,10 +2,10 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Arcane Cyber Security — US-Based Certified Pentesters",
+  title: "Summit Cyber Group — US-Based Certified Pentesters and Security Experts",
   description: "US-based certified penetration testers. Red & purple team operations. PCI, HIPAA, SOX, SOC2. Web, internal, external, IoT, and AI pentesting.",
-  metadataBase: new URL("https://arcanesec.net"),
-  openGraph: { title: "Arcane Cyber Security", description: "US-based certified penetration testers.", url: "https://arcanesec.net", siteName: "Arcane Cyber Security", type: "website" },
+  metadataBase: new URL("https://summitcyber.io"),
+  openGraph: { title: "Summit Cyber Group", description: "US-based certified penetration testers.", url: "https://summitcyber.io", siteName: "Summit Cyber Group", type: "website" },
   icons: [{ url: "/favicon.png", type: "image/png+xml" }]
 };
 
@@ -29,13 +29,13 @@ function Header() {
           {/* Mobile: just glyph */}
           <img
             src="/mobile.png"
-            alt="Arcane Cyber Security"
+            alt="Summit Cyber Group"
             className="h-8 w-8 rounded-lg sm:hidden"
           />
           {/* Desktop: full wordmark */}
           <img
             src="/newlogo.png"
-            alt="Arcane Cyber Security"
+            alt="Summit Cyber Group"
             className="hidden sm:block h-12"
           />
         </a>
