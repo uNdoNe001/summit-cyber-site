@@ -1,4 +1,4 @@
-export const metadata = { title: "About — Arcane Cyber Security" };
+export const metadata = { title: "About — Summit Cyber Group" };
 
 export default function About() {
   return (
