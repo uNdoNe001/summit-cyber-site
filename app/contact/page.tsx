@@ -1,6 +1,6 @@
 import ContactForm from "@/components/ContactForm";
 
-export const metadata = { title: "Contact — Arcane Cyber Security" };
+export const metadata = { title: "Contact — Summit Cyber Group" };
 
 export default function ContactPage() {
   return (
