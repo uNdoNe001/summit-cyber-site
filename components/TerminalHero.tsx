@@ -4,14 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const LINES = [
-  "arcane@ops:~$ whoami",
-  "US-based certified penetration testers",
-  "arcane@ops:~$ scope --show",
-  "Web • API • Internal • External • IoT • AI",
-  "arcane@ops:~$ compliance --targets PCI HIPAA SOX SOC2",
+  "summit@ops:~$ whoami",
+  "US-based certified penetration testers and cyber experts",
+  "summit@ops:~$ scope --show",
+  "Web • API • Internal • External • IoT • AI • Forensics",
+  "summit@ops:~$ compliance --targets PCI HIPAA SOX SOC2 - Small and Medium-Sized Business",
   "Evidence-ready reporting & fix-verify",
-  "arcane@ops:~$ engage --purple-team",
-  "Detection engineering + retest included"
+  "summit@ops:~$ engage --purple-team",
+  "Detection engineering + remediation + retestesting"
 ];
 
 export default function TerminalHero() {
