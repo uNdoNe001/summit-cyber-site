@@ -1,4 +1,4 @@
-export const metadata = { title: "Methodology — Arcane Cyber Security" };
+export const metadata = { title: "Methodology — Summit Cyber Group" };
 
 export default function Methodology() {
   const steps = [
