@@ -56,7 +56,7 @@ function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-400">
         <div className="flex flex-col gap-2">
           <span className="hacker text-arcane-dim">US-Based • Certified • No bug-bounty contractors</span>
-          <span>© {new Date().getFullYear()} Arcane Cyber Security. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Summit Cyber Group LLC. All rights reserved.</span>
         </div>
       </div>
     </footer>
