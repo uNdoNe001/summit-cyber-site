@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: process.env.CONTACT_FROM_EMAIL,
       to: process.env.CONTACT_TO_EMAIL,
-      subject: `New Contact Request — ArcaneSec`,
+      subject: `New Contact Request — Summit Cyber`,
       text: `
 Name: ${name}
 Email: ${email}
