@@ -36,7 +36,7 @@ function Header() {
           <img
             src="/newlogo.png"
             alt="Summit Cyber Group"
-            className="hidden sm:block h-12"
+            className="hidden sm:block h-18"
           />
         </a>
         <nav className="flex items-center gap-6 text-sm">
